@@ -1,48 +1,48 @@
 from rest_framework import serializers 
-from HospitalAPI.models import Pacients,PacientsCardiac,PacientsPulmonary
+from HospitalAPI.models import Patients,PatientsCardiac,PatientsPulmonary
 
-class PacientsSerializer(serializers.ModelSerializer):
+class PatientsSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Pacients
+        model=Patients
         fields=(
-            'pacientCPF',
-            'pacientName',
-            'pacientAge',
-            'pacientRG',
-            'pacientBirth',
-            'pacientSex',
-            'pacientSign',
-            'pacientMom',
-            'pacientFather',
-            'pacientEmail',
-            'pacientsPassword',
-            'pacientCep',
-            'pacientAdress',
-            'pacientAdressNumber',
-            'pacientAdressNeighborhood',
-            'pacientCity',
-            'pacientState',
-            'pacientHPhone',
-            'pacientPhone',
-            'pacientHeight',
-            'pacientWeight',
-            'pacientBlood',
-            'pacientColor')
+            'patientCPF',
+            'patientName',
+            'patientAge',
+            'patientRG',
+            'patientBirth',
+            'patientSex',
+            'patientSign',
+            'patientMom',
+            'patientFather',
+            'patientEmail',
+            'patientsPassword',
+            'patientCep',
+            'patientAdress',
+            'patientAdressNumber',
+            'patientAdressNeighborhood',
+            'patientCity',
+            'patientState',
+            'patientHPhone',
+            'patientPhone',
+            'patientHeight',
+            'patientWeight',
+            'patientBlood',
+            'patientColor')
 
 class CardiacSerializer(serializers.ModelSerializer):
     class Meta:
-        model=PacientsCardiac
+        model=PatientsCardiac
         fields=(
-            'pacientCPF',
-            'pacientDate',
-            'pacientCEPOC',
-            'pacientInd_card')
+            'patientCPF',
+            'patientDate',
+            'patientCEPOC',
+            'patientInd_card')
 
 class PulmonarySerializer(serializers.ModelSerializer):
     class Meta:
-        model=PacientsPulmonary
+        model=PatientsPulmonary
         fields=(
-            'pacientCPF',
-            'pacientDate',
-            'pacientPEPOC',
-            'pacientInd_pulm')
+            'patientCPF',
+            'patientDate',
+            'patientPEPOC',
+            'patientInd_pulm')
