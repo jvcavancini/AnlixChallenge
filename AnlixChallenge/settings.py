@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'CLIENT': {
             "host":"mongodb+srv://anlix-admin:mlVRrlCaPA6wAoia@anlix-challenge.bm27l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-            "name":"HospitalsAPI",
+            "name":"Anlix-Challenge",
             "authMechanism":"SCRAM-SHA-1"
         }
     }

@@ -3,7 +3,7 @@ import json
 from os.path import exists
 
 year="2021"
-header=["CPF","EPOC","ind_pulm"]
+header=["patientCPF","patientCEPOC","patientInd_card","patientDate"]
 
 with open('json_data.json', 'w') as outfile:
     outfile.write("[")
@@ -24,10 +24,10 @@ with open('json_data.json', 'w') as outfile:
                 next(csvreader)
                 rows = []
                 for row in csvreader:
-                    rows.append(dict(zip(header,row[0].split(sep=" ", maxsplit=3))))
+                    rows.append(dict(zip(header,(row[0].split(sep=" ", maxsplit=3),"2021-"+str(month)+"-"+str(day)))))
                 file.close()
                 for i in range(0,len(rows)):
-                    rows[i]["CPF"]=rows[i]["CPF"][0:3]+rows[i]["CPF"][4:7]+rows[i]["CPF"][8:11]+rows[i]["CPF"][12:14]
+                    rows[i]["patientCPF"]=rows[i]["patientCPF"][0:3]+rows[i]["patientCPF"][4:7]+rows[i]["patientCPF"][8:11]+rows[i]["patientCPF"][12:14]
                 #convert rows to json
                 #writes in json
                 for row in rows:

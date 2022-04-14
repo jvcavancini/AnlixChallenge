@@ -1,5 +1,7 @@
 from django.db import models
 
+#change cpf to key
+#working as an id now
 class Patients(models.Model):
     patientCPF = models.AutoField(primary_key=True)
     patientName = models.CharField(max_length=100)
@@ -27,12 +29,12 @@ class Patients(models.Model):
 
 class PatientsCardiac(models.Model):
     patientCPF = models.AutoField(primary_key=True)
-    patientDate = models.CharField(max_length=10)
+    patientDate = models.DateField()
     patientCEPOC = models.CharField(max_length=100)
     patientInd_card = models.FloatField()
 
 class PatientsPulmonary(models.Model):
     patientCPF = models.AutoField(primary_key=True)
-    patientDate = models.CharField(max_length=10)
+    patientDate = models.DateField()
     patientPEPOC = models.CharField(max_length=100)
     patientInd_pulm = models.FloatField()
