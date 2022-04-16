@@ -1,3 +1,4 @@
+from django.forms import DateTimeField
 from django.shortcuts import render
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
@@ -12,9 +13,10 @@ def patients_list(request):
     #basic view created
     #still have to update this view with the patients characteristics
     if request.method == 'GET':
-        print('oi')
         patient = Patients.objects.all()
         patients_serializer = PatientsSerializer(patient, many=True)
+        #cardiac = PatientsCardiac.objects.all()
+        #pulmonary = PatientsPulmonary.objects.all()
         #cardiac=PatientsCardiac.objects.latest('patientDate')
         #cardiac_serializer = CardiacSerializer(cardiac, many=True)
         #pulmonary=PatientsPulmonary.objects.latest('patientDate')
@@ -22,14 +24,15 @@ def patients_list(request):
         return JsonResponse(patients_serializer.data, safe=False)
     elif request.method == 'POST':
         patient_data = JSONParser().parse(request)
-        patient_serializer = PatientsSerializer(data=patient_data)
+        print(patient_data)
+        patient_serializer = PatientsSerializer(data=patient_data, many=True)
         if patient_serializer.is_valid():
             patient_serializer.save()
-            return JsonResponse(patient_serializer.data, status=status.HTTP_201_CREATED) 
-        return JsonResponse(patient_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#    elif request.method == 'DELETE':
-#        count = Patients.objects.all().delete()
-#        return JsonResponse({'message': '{} Patients were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
+            return JsonResponse(patient_serializer.data, status=status.HTTP_201_CREATED, safe=False) 
+        return JsonResponse(patient_serializer.errors, status=status.HTTP_400_BAD_REQUEST, safe=False)
+    elif request.method == 'DELETE':
+        count = Patients.objects.all().delete()
+        return JsonResponse({'message': '{} Patients were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
  
  
 @api_view(['GET', 'PUT', 'DELETE'])
