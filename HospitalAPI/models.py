@@ -1,9 +1,7 @@
 from django.db import models
 
-#change cpf to key
-#working as an id now
 class Patients(models.Model):
-    cpf = models.CharField(max_length=14, unique=True)
+    cpf = models.CharField(max_length=14, primary_key=True)
     nome = models.CharField(max_length=100)
     idade = models.IntegerField()
     rg = models.CharField(max_length=20)
@@ -28,13 +26,13 @@ class Patients(models.Model):
     cor = models.CharField(max_length=20)
 
 class PatientsCardiac(models.Model):
-    patientCPF = models.ForeignKey(Patients,to_field="cpf", db_column="patientCPF", on_delete=models.CASCADE)
+    patientCPF = models.ForeignKey(Patients,  related_name="cardiac", on_delete=models.CASCADE)
     patientDate = models.DateField()
     patientCEPOC = models.CharField(max_length=100)
     patientInd_card = models.FloatField()
 
 class PatientsPulmonary(models.Model):
-    patientCPF = models.ForeignKey(Patients,to_field="cpf", db_column="patientCPF", on_delete=models.CASCADE)
+    patientCPF = models.ForeignKey(Patients,  related_name="pulmonary", on_delete=models.CASCADE)
     patientDate = models.DateField()
     patientPEPOC = models.CharField(max_length=100)
     patientInd_pulm = models.FloatField()

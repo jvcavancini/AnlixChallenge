@@ -24,10 +24,10 @@ with open('json_data.json', 'w') as outfile:
                 next(csvreader)
                 rows = []
                 for row in csvreader:
-                    rows.append(dict(zip(header,(row[0].split(sep=" ", maxsplit=3),"2021-"+str(month)+"-"+str(day)))))
+                    rows.append(dict(zip(header,(row[0].split(sep=" ", maxsplit=3)[0], row[0].split(sep=" ", maxsplit=3)[1], row[0].split(sep=" ", maxsplit=3)[2],"2021-"+str(month)+"-"+str(day)))))
                 file.close()
                 for i in range(0,len(rows)):
-                    rows[i]["patientCPF"]=rows[i]["patientCPF"][0:3]+rows[i]["patientCPF"][4:7]+rows[i]["patientCPF"][8:11]+rows[i]["patientCPF"][12:14]
+                    rows[i]["patientCPF"]=rows[i]["patientCPF"][0:3]+"."+rows[i]["patientCPF"][4:7]+"."+rows[i]["patientCPF"][8:11]+"-"+rows[i]["patientCPF"][12:14]
                 #convert rows to json
                 #writes in json
                 for row in rows:
